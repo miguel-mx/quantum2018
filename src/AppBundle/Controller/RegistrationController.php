@@ -54,7 +54,7 @@ class RegistrationController extends Controller
             $mailer = $this->container->get('mailer');
 
             $message = \Swift_Message::newInstance()
-                ->setSubject('QUANTUM2018 Registration')
+                ->setSubject('QUANTUM 2018 Registration')
                 ->setFrom('quantum2018@matmor.unam.mx')
                 ->setTo(array($registration->getEmail()))
                 ->setBcc(array('miguel@matmor.unam.mx'))

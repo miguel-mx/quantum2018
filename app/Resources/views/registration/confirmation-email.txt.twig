@@ -11,6 +11,7 @@ Institution: {{ registration.institution }}
 
 Status: {{ registration.status }}
 {% if registration.status == 'Student' %}
+
 We recall that to complete the registration we need a recommendation letter sent to quantum2018@matmor.unam.mx
 {% endif %}
 
@@ -19,7 +20,7 @@ Arrival date: {{ registration.arrivalDate|date('Y-m-d') }}
 {% endif %}
 
 {% if registration.departureDate %}
-Departure date {{ registration.departureDate|date('Y-m-d') }}
+Departure date: {{ registration.departureDate|date('Y-m-d') }}
 {% endif %}
 
 {% if registration.title %}

@@ -1,0 +1,36 @@
+
+Dear {{ registration.name|title }} {{ registration.surname|title }},
+
+Your request to participate at the Mathematical and Conceptual Aspects of Quantum Theory was registered successfully.
+
+Shall you have any question please contact us at quantum2018@matmor.unam.mx
+
+Data received:
+
+Email: {{ registration.email }}
+
+Institution: {{ registration.institution }}
+
+{% if registration.arrivalDate %}
+Arrival date: {{ registration.arrivalDate|date('Y-m-d') }}
+{% endif %}
+
+{% if registration.departureDate %}
+Departuredate {{ registration.departureDate|date('Y-m-d') }}
+{% endif %}
+
+{% if registration.title %}
+{{ registration.title }}
+
+{{ registration.abstract }}
+{% endif %}
+
+{% if registration.fellowship %}
+I am a student and would like to ask for a fellowship (beca) for accommodation expenses.
+{% else %}
+I am not asking for a fellowship (beca).
+{% endif %}
+
+
+------------------------
+The organising committee

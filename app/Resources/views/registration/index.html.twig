@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Registrations list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Email</th>
+                <th>Institution</th>
+                <th>Status</th>
+                <th>Arrivaldate</th>
+                <th>Departuredate</th>
+                <th>Title</th>
+                <th>Abstract</th>
+                <th>Createdat</th>
+                <th>Modifiedat</th>
+                <th>Slug</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for registration in registrations %}
+            <tr>
+                <td><a href="{{ path('registration_show', { 'id': registration.id }) }}">{{ registration.id }}</a></td>
+                <td>{{ registration.name }}</td>
+                <td>{{ registration.surname }}</td>
+                <td>{{ registration.email }}</td>
+                <td>{{ registration.institution }}</td>
+                <td>{{ registration.status }}</td>
+                <td>{% if registration.arrivalDate %}{{ registration.arrivalDate|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ registration.departureDate|date('Y-m-d') }}</td>
+                <td>{{ registration.title }}</td>
+                <td>{{ registration.abstract }}</td>
+                <td>{% if registration.createdAt %}{{ registration.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if registration.modifiedAt %}{{ registration.modifiedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ registration.slug }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('registration_show', { 'id': registration.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('registration_edit', { 'id': registration.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('registration_new') }}">Create a new registration</a>
+        </li>
+    </ul>
+{% endblock %}

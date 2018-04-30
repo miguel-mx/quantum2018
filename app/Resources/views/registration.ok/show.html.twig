@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Registration</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ registration.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ registration.name }}</td>
+            </tr>
+            <tr>
+                <th>Surname</th>
+                <td>{{ registration.surname }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ registration.email }}</td>
+            </tr>
+            <tr>
+                <th>Institution</th>
+                <td>{{ registration.institution }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ registration.status }}</td>
+            </tr>
+            <tr>
+                <th>Arrivaldate</th>
+                <td>{% if registration.arrivalDate %}{{ registration.arrivalDate|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Departuredate</th>
+                <td>{% if registration.departureDate %}{{ registration.departureDate|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ registration.title }}</td>
+            </tr>
+            <tr>
+                <th>Abstract</th>
+                <td>{{ registration.abstract }}</td>
+            </tr>
+            <tr>
+                <th>Expenses</th>
+                <td>{{ registration.expenses }}</td>
+            </tr>
+            <tr>
+                <th>Createdat</th>
+                <td>{% if registration.createdAt %}{{ registration.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Modifiedat</th>
+                <td>{% if registration.modifiedAt %}{{ registration.modifiedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Slug</th>
+                <td>{{ registration.slug }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('registration_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('registration_edit', { 'id': registration.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

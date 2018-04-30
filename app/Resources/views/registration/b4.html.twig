@@ -1,0 +1,155 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.standalone.min.css" />
+{% endblock %}
+
+{% block body %}
+
+    <div class="py-5 text-center">
+        <img class="d-block mx-auto mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+        <h4>MATHEMATICAL AND CONCEPTUAL ASPECTS OF QUANTUM THEORY</h4>
+        <h6>20-22 JUNE 2018</h6>
+        <h5 class="mt-4">CENTRO DE CIENCIAS MATEMATICAS - UNAM</h5>
+    </div>
+
+    <form>
+        <div class="row justify-content-md-center">
+            <div class="col-md-8 col-sm-12">
+                <h3 class="mb-4">Registration</h3>
+                {{ form_start(form) }}
+
+                {#<div class="alert alert-danger">{{ form_errors(form) }}</div>#}
+                <div class="row">
+                    <div class="form-group col-md-6 col-sm-12">
+                        <label for="inputName">Name</label>
+                        {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group col-md-6 col-sm-12">
+                        <label for="inputName">Surname</label>
+                        {{ form_widget(form.surname, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6 col-sm-12">
+                        <label for="inputName">Email</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fa fa-at"></i></div>
+                            </div>
+                            {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6 col-sm-12">
+                        <label for="inputName">Institution</label>
+                        {{ form_widget(form.institution, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6 col-sm-12">
+                        <label for="inputName">Status</label>
+                        {{ form_widget(form.status, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+                <hr class="my-4">
+                <h3 class="mb-4">Travel information</h3>
+                <div class="row">
+                    <div class="form-group col-md-6 col-sm-12">
+                        <label for="inputName">Arrival date</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+                            {{ form_widget(form.arrivalDate, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6 col-sm-12">
+                        <label for="inputName">Departure date</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+                            {{ form_widget(form.departureDate, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+                </div>
+                <hr class="my-4">
+
+                {#<div class="form-check mb-3">#}
+                    {#{{ form_widget(form.toggleTalk, {'attr': {'class': 'form-check-input'}}) }}#}
+                    {#<label class="form-check-label lead" for="appbundle_registration_toggleTalk">I would like to submit a talk.</label>#}
+                {#</div>#}
+
+                <div class="form-group">
+                    <label for="inputName">Title</label>
+                    {{ form_widget(form.title, {'attr': {'class': 'form-control', 'disabled':'disabled'}}) }}
+                </div>
+                <div class="form-group">
+                    <label for="inputName">Abtract</label>
+                    {{ form_widget(form.abstract, {'attr': {'class': 'form-control', 'rows':'6', 'disabled':'disabled'}}) }}
+                </div>
+                <hr class="my-4">
+                {#<div class="form-check mb-3">#}
+                    {#{{ form_widget(form.toggleExpenses, {'attr': {'class': 'form-check-input'}}) }}#}
+                    {#<label class="form-check-label lead" for="appbundle_registration_toggleExpenses">I am a student and would like to ask for a fellowship (beca).</label>#}
+                {#</div>#}
+                <div class="form-group">
+                    <label for="inputName">Estimated travel expenses</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="fa fa-dollar"></i></div>
+                        </div>
+                        {{ form_widget(form.expenses, {'attr': {'class': 'form-control', 'disabled':'disabled'}}) }}
+                        {{ form_widget(form.expenses, {'attr': {'class': 'form-control', 'disabled':'disabled'}}) }}
+                    </div>
+                </div>
+                {{ form_widget(form) }}
+
+
+                <input type="submit" class="btn btn-primary"  value="Create" />
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </form>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
+    <script>
+        $(function () {
+            $('#appbundle_registration_arrivalDate').datepicker({
+                format: 'yyyy-mm-dd'
+            });
+        });
+    </script>
+    <script>
+        $(function () {
+            $('#appbundle_registration_departureDate').datepicker({
+                format: 'yyyy-mm-dd'
+            });
+        });
+    </script>
+    <script>
+        $('#appbundle_registration_toggleTalk').click(function () {
+            //check if checkbox is checked
+            if ($(this).is(':checked')) {
+                $('#appbundle_registration_title').removeAttr('disabled');
+                $('#appbundle_registration_abstract').removeAttr('disabled');
+            } else {
+                $('#appbundle_registration_title').attr('disabled', true);
+                $('#appbundle_registration_abstract').attr('disabled', true);
+            }
+        });
+        $('#appbundle_registration_toggleExpenses').click(function () {
+            //check if checkbox is checked
+            if ($(this).is(':checked')) {
+                $('#appbundle_registration_expenses').removeAttr('disabled');
+            } else {
+                $('#appbundle_registration_expenses').attr('disabled', true);
+            }
+        });
+    </script>
+{% endblock %}

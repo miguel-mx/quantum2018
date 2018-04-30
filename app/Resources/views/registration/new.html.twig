@@ -53,6 +53,7 @@
                     {{ form_widget(form.status, {'attr': {'class': 'form-control'}}) }}
                 </div>
             </div>
+            <div class="alert alert-success">If you are a student please have a short letter recommending your participation be sent to: <strong>quantum2018<i class="fa fa-at"></i>matmor.unam.mx</strong></div>
             <hr class="my-4">
             <h3 class="mb-4">Travel information</h3>
             <div class="row">
@@ -62,7 +63,7 @@
                         <div class="input-group-prepend">
                             <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                         </div>
-                        {{ form_widget(form.arrivalDate, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_widget(form.arrivalDate, {'attr': {'class': 'form-control', 'value':'2018-06-19'}}) }}
                         <span class="text-danger">{{ form_errors(form.arrivalDate) }}</span>
                     </div>
                 </div>
@@ -72,7 +73,7 @@
                         <div class="input-group-prepend">
                             <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                         </div>
-                        {{ form_widget(form.departureDate, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_widget(form.departureDate, {'attr': {'class': 'form-control', 'value':'2018-06-21'}}) }}
                         <span class="text-danger">{{ form_errors(form.arrivalDate) }}</span>
                     </div>
                 </div>
@@ -105,7 +106,6 @@
                     {#{{ form_widget(form.expenses, {'attr': {'class': 'form-control', 'disabled':'disabled'}}) }}#}
                 {#</div>#}
             {#</div>#}
-            <div class="alert alert-success">If you are a student please have a short letter recommending your participation be sent to: <strong>quantum2018<i class="fa fa-at"></i>matmor.unam.mx</strong></div>
 
             {{ form_widget(form) }}
 
@@ -145,13 +145,5 @@
                 $('#appbundle_registration_abstract').attr('disabled', true);
             }
         });
-        // $('#appbundle_registration_toggleExpenses').click(function () {
-        //     //check if checkbox is checked
-        //     if ($(this).is(':checked')) {
-        //         $('#appbundle_registration_expenses').removeAttr('disabled');
-        //     } else {
-        //         $('#appbundle_registration_expenses').attr('disabled', true);
-        //     }
-        // });
     </script>
 {% endblock %}

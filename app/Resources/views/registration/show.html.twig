@@ -1,77 +1,27 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Registration</h1>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ registration.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ registration.name }}</td>
-            </tr>
-            <tr>
-                <th>Surname</th>
-                <td>{{ registration.surname }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ registration.email }}</td>
-            </tr>
-            <tr>
-                <th>Institution</th>
-                <td>{{ registration.institution }}</td>
-            </tr>
-            <tr>
-                <th>Status</th>
-                <td>{{ registration.status }}</td>
-            </tr>
-            <tr>
-                <th>Arrivaldate</th>
-                <td>{% if registration.arrivalDate %}{{ registration.arrivalDate|date('Y-m-d') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Departuredate</th>
-                <td>{{ registration.departureDate|date('Y-m-d') }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ registration.title }}</td>
-            </tr>
-            <tr>
-                <th>Abstract</th>
-                <td>{{ registration.abstract }}</td>
-            </tr>
 
-            <tr>
-                <th>Createdat</th>
-                <td>{% if registration.createdAt %}{{ registration.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Modifiedat</th>
-                <td>{% if registration.modifiedAt %}{{ registration.modifiedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Slug</th>
-                <td>{{ registration.slug }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <h2 class="text-secondary my-4">Quantum 2018</h2>
+    <a class="btn btn-outline-primary mb-4" href="{{ path('registration_index') }}" role="button"><i class="fa fa-chevron-circle-left"></i> Back to list</a>
+    <div class="card">
+        <div class="card-header">
+            <h5 class="text-primary"><b>{{ registration.name }} {{ registration.surname }}</b> <small class="text-muted">{{ registration.email }}</small></h5>
+        </div>
+        <div class="card-body">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">{{ registration.institution }}, {{ registration.status }} - {% if registration.fellowship %} Fellowship {% endif %}</li>
+                <li class="list-group-item">{{ registration.status }} - {% if registration.fellowship %} Fellowship {% endif %}</li>
+                {% if registration.arrivalDate %}<li class="list-group-item">Arrival date: <span class="text-secondary">{{ registration.arrivalDate|localizeddate('none', 'none', 'en_US', null, "cccc, d MMMM Y ") }}</span></li>{% endif %}
+                {% if registration.departureDate %}<li class="list-group-item">Departure date: <span class="text-secondary">{{ registration.departureDate|localizeddate('none', 'none', 'en_US', null, "cccc, d MMMM Y ") }}</span></li>{% endif %}
+            </ul>
+            {% if registration.title %}
+                <h4 class="mt-4">{{ registration.title }}</h4>
+                <p>{{ registration.abstract }}</p>
+            {% endif %}
 
-    <ul>
-        <li>
-            <a href="{{ path('registration_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('registration_edit', { 'id': registration.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+        </div>
+    </div>
+
 {% endblock %}

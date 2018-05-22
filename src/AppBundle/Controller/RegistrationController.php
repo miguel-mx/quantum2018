@@ -75,7 +75,7 @@ class RegistrationController extends Controller
     /**
      * Finds and displays a registration entity.
      *
-     * @Route("/{id}", name="registration_show")
+     * @Route("/{slug}", name="registration_show")
      * @Method("GET")
      */
     public function showAction(Registration $registration)
@@ -94,7 +94,7 @@ class RegistrationController extends Controller
     /**
      * Displays a form to edit an existing registration entity.
      *
-     * @Route("/{id}/edit", name="registration_edit")
+     * @Route("/{slug}/edit", name="registration_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Registration $registration)
@@ -109,7 +109,7 @@ class RegistrationController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('registration_edit', array('id' => $registration->getId()));
+            return $this->redirectToRoute('registration_edit', array('slug' => $registration->getSlug()));
         }
 
         return $this->render('registration/edit.html.twig', array(

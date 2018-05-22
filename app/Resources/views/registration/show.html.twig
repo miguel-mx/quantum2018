@@ -2,7 +2,6 @@
 
 {% block body %}
 
-
     <h2 class="text-secondary my-4">Quantum 2018</h2>
     <a class="btn btn-outline-primary mb-4" href="{{ path('registration_index') }}" role="button"><i class="fa fa-chevron-circle-left"></i> Back to list</a>
     <div class="card">
@@ -11,7 +10,7 @@
         </div>
         <div class="card-body">
             <ul class="list-group list-group-flush">
-                <li class="list-group-item">{{ registration.institution }}, {{ registration.status }} - {% if registration.fellowship %} Fellowship {% endif %}</li>
+                <li class="list-group-item">{{ registration.institution }}</li>
                 <li class="list-group-item">{{ registration.status }} - {% if registration.fellowship %} Fellowship {% endif %}</li>
                 {% if registration.arrivalDate %}<li class="list-group-item">Arrival date: <span class="text-secondary">{{ registration.arrivalDate|localizeddate('none', 'none', 'en_US', null, "cccc, d MMMM Y ") }}</span></li>{% endif %}
                 {% if registration.departureDate %}<li class="list-group-item">Departure date: <span class="text-secondary">{{ registration.departureDate|localizeddate('none', 'none', 'en_US', null, "cccc, d MMMM Y ") }}</span></li>{% endif %}

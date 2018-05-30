@@ -25,6 +25,7 @@
                 <th>Institution</th>
                 <th>Status</th>
                 <th>Date</th>
+                <th>Fellowship</th>
                 <th>Title</th>
             </tr>
         </thead>
@@ -36,6 +37,7 @@
                 <td>{{ registration.institution }}</td>
                 <td>{{ registration.status }}</td>
                 <td>{{ registration.createdAt|localizeddate('none', 'none', 'en_US', null, "cccc, d MMMM Y ") }}</td>
+                <td class="text-center">{% if registration.fellowship %}Yes{% endif %}</td>
                 <td>{{ registration.title }}</td>
             </tr>
         {% endfor %}

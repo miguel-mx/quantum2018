@@ -10,4 +10,38 @@ namespace AppBundle\Repository;
  */
 class RegistrationRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function countStudents()
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT count(r.id)  FROM AppBundle:Registration r WHERE r.status = :student'
+            )
+            ->setParameter('student', 'Student')
+            ->getSingleScalarResult();
+    }
+    public function countTalks()
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT count(r.id)  FROM AppBundle:Registration r WHERE r.title IS NOT NULL'
+            )
+            ->getSingleScalarResult();
+    }
+    public function countRecommendation()
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT count(r.id)  FROM AppBundle:Registration r WHERE r.file IS NOT NULL'
+            )
+            ->getSingleScalarResult();
+    }
+    public function countFellowships()
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT count(r.id)  FROM AppBundle:Registration r WHERE r.fellowship = true'
+            )
+            ->getSingleScalarResult();
+    }
+
 }

@@ -28,9 +28,18 @@ class RegistrationController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $registrations = $em->getRepository('AppBundle:Registration')->findAll();
+        $totalStudents = $em->getRepository('AppBundle:Registration')->countStudents();
+        $totalTalks = $em->getRepository('AppBundle:Registration')->countTalks();
+        $totalRecommendations = $em->getRepository('AppBundle:Registration')->countRecommendation();
+        $totalFellowships = $em->getRepository('AppBundle:Registration')->countFellowships();
+
 
         return $this->render('registration/index.html.twig', array(
             'registrations' => $registrations,
+            'totalStudents' => $totalStudents,
+            'totalFellowships' => $totalFellowships,
+            'totalTalks' => $totalTalks,
+            'totalRecommendations' => $totalRecommendations,
         ));
     }
 

@@ -17,7 +17,7 @@
         <i class="fa fa-envelope"></i> Participant's emails
     </button>
 
-    <table id="registry" class="table table-sm table-striped table-bordered" cellspacing="0" width="100%">
+    <table id="registry" class="table table-sm table-striped table-bordered text-sm" cellspacing="0" width="100%">
         <thead>
             <tr>
                 <th>Name</th>
@@ -26,6 +26,7 @@
                 <th>Status</th>
                 <th>Date</th>
                 <th>Fellowship</th>
+                 <th>Reccomendation</th>
                 <th>Title</th>
             </tr>
         </thead>
@@ -38,6 +39,7 @@
                 <td>{{ registration.status }}</td>
                 <td>{{ registration.createdAt|localizeddate('none', 'none', 'en_US', null, "cccc, d MMMM Y ") }}</td>
                 <td class="text-center">{% if registration.fellowship %}Yes{% endif %}</td>
+                <td>{% if registration.file %}<a href="{{ asset('docs/' ~ registration.file) }}">{{ registration.file }}</a>{% endif %}</td>
                 <td>{{ registration.title }}</td>
             </tr>
         {% endfor %}

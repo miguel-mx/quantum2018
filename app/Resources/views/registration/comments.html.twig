@@ -1,0 +1,17 @@
+{{ form_start(edit_form, {'action': path('comments-edit', { 'slug': registration.slug })}) }}
+
+    <div class="form-group">
+        <label for="inputTitle">Recommendation file</label>
+        <span class="text-danger">{{ form_errors(edit_form.file) }}</span>
+        {{ form_widget(edit_form.file, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="form-group">
+        <label for="inputAbstract">Comments</label>
+        <span class="text-danger">{{ form_errors(edit_form.comments) }}</span>
+        {{ form_widget(edit_form.comments, {'attr': {'class': 'form-control', 'rows':'6'}}) }}
+    </div>
+
+<input type="submit" value="Save"  class="btn btn-primary"/>
+<button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+
+{{ form_end(edit_form) }}

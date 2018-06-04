@@ -2,23 +2,87 @@
 
 {% block body %}
 
+    {% for flash_message in app.session.flashBag.get('notice') %}
+        <div class="alert alert-success"> {{ flash_message }} </div>
+    {% endfor %}
+
     <a class="btn btn-outline-primary my-5" href="{{ path('registration_index') }}" role="button"><i class="fa fa-chevron-circle-left"></i> Back to list</a>
     <div class="card">
         <div class="card-header">
             <h5 class="text-primary"><b>{{ registration.name }} {{ registration.surname }}</b> <small class="text-muted">{{ registration.email }}</small></h5>
         </div>
         <div class="card-body">
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">{{ registration.institution }}</li>
-                <li class="list-group-item">{{ registration.status }} - {% if registration.fellowship %} Fellowship {% endif %}</li>
-                {% if registration.arrivalDate %}<li class="list-group-item">Arrival date: <span class="text-secondary">{{ registration.arrivalDate|localizeddate('none', 'none', 'en_US', null, "cccc, d MMMM Y ") }}</span></li>{% endif %}
-                {% if registration.departureDate %}<li class="list-group-item">Departure date: <span class="text-secondary">{{ registration.departureDate|localizeddate('none', 'none', 'en_US', null, "cccc, d MMMM Y ") }}</span></li>{% endif %}
-            </ul>
+            <div class="row mb-2">
+                <div class="col-md-3 text-muted">Institution:</div>
+                <div class="col-md-9">{{ registration.institution }}</div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-md-3 text-muted">Status:</div>
+                <div class="col-md-9">{{ registration.status }}</div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-md-3 text-muted">Fellowship:</div>
+                <div class="col-md-9">{% if registration.fellowship %}Yes {% else %}No {% endif %}</div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-md-3 text-muted">Arrival date:</div>
+                <div class="col-md-9">{% if registration.arrivalDate %}{{ registration.arrivalDate|localizeddate('none', 'none', 'en_US', null, "cccc, d MMMM Y ") }}{% endif %}</div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-md-3 text-muted">Departure date:</div>
+                <div class="col-md-9">{% if registration.departureDate %}{{ registration.departureDate|localizeddate('none', 'none', 'en_US', null, "cccc, d MMMM Y ") }}{% endif %}</div>
+            </div>
+
+            {#<ul class="list-group list-group-flush">#}
+                {#<li class="list-group-item">{{ registration.institution }}</li>#}
+                {#<li class="list-group-item">{{ registration.status }} - {% if registration.fellowship %} Fellowship {% endif %}</li>#}
+                {#{% if registration.arrivalDate %}<li class="list-group-item">Arrival date: <span class="text-secondary">{{ registration.arrivalDate|localizeddate('none', 'none', 'en_US', null, "cccc, d MMMM Y ") }}</span></li>{% endif %}#}
+                {#{% if registration.departureDate %}<li class="list-group-item">Departure date: <span class="text-secondary">{{ registration.departureDate|localizeddate('none', 'none', 'en_US', null, "cccc, d MMMM Y ") }}</span></li>{% endif %}#}
+            {#</ul>#}
             {% if registration.title %}
                 <h4 class="mt-4">{{ registration.title }}</h4>
                 <p>{{ registration.abstract }}</p>
             {% endif %}
 
+        </div>
+    </div>
+
+    {% if registration.file %}
+        <h5 class="my-4"><a href="{{ asset('docs/' ~ registration.file) }}"><i class="fa fa-file"></i> Recommendation letter</a></h5>
+    {% else %}
+        <h5 class="my-4 text-muted"><del><i class="fa fa-file"></i> Recommendation letter</del></h5>
+    {% endif %}
+
+    <div class="card mb-4">
+         <div class="card-header">
+             <div class="row">
+                 <div class="col">
+                     <h5 class="text-primary"><b>Comments</b></h5>
+                 </div>
+                 <div class="col text-right">
+                 <button class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#commentModal">Edit</button>
+                 </div>
+             </div>
+        </div>
+        <div class="card-body">
+            <p class="text-muted">{{ registration.comments|nl2br }}</p>
+        </div>
+    </div>
+
+    <!-- Comment Modal -->
+    <div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="CommentModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="CommentModalLabel">Comment</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {% render controller("AppBundle:Registration:commentsEdit", {'slug': registration.slug}) %}
+                </div>
+            </div>
         </div>
     </div>
 

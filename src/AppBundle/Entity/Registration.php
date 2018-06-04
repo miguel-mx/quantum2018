@@ -113,6 +113,20 @@ class Registration
     private $fellowship;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="comments", type="text", nullable=true)
+     */
+    private $comments;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="file", type="string", length=255, nullable=true)
+     */
+    private $file;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="createdAt", type="datetime")
@@ -382,6 +396,55 @@ class Registration
     {
         return $this->fellowship;
     }
+
+    /**
+     * Set comments
+     *
+     * @param string $comments
+     *
+     * @return Registration
+     */
+    public function setComments($comments)
+    {
+        $this->comments = $comments;
+
+        return $this;
+    }
+
+    /**
+     * Get comments
+     *
+     * @return string
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    /**
+     * Set file
+     *
+     * @param string $file
+     *
+     * @return Registration
+     */
+    public function setFile($file)
+    {
+        $this->file = $file;
+
+        return $this;
+    }
+
+    /**
+     * Get file
+     *
+     * @return string
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
 
     /**
      * Set createdAt

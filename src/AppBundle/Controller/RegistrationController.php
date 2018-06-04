@@ -119,6 +119,38 @@ class RegistrationController extends Controller
         ));
     }
 
+   /**
+     * Displays a form to edit Comments of an existing User entity.
+     *
+     * @Route("/{slug}/comments-edit", name="comments-edit")
+     * @Method({"GET", "POST"})
+     */
+    public function commentsEditAction(Request $request, Registration $registration)
+    {
+        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            throw $this->createAccessDeniedException();
+        }
+
+        $editForm = $this->createForm('AppBundle\Form\CommentType', $registration);
+        $editForm->handleRequest($request);
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($registration);
+            $em->flush();
+            $this->addFlash(
+                'notice',
+                'Your changes were saved!'
+            );
+
+            return $this->redirectToRoute('registration_show', array('slug' => $registration->getSlug()));
+        }
+
+        return $this->render('registration/comments.html.twig', array(
+            'registration' => $registration,
+            'edit_form' => $editForm->createView(),
+        ));
+    }
+
     /**
      * Deletes a registration entity.
      *

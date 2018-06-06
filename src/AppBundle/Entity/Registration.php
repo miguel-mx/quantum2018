@@ -113,6 +113,13 @@ class Registration
     private $fellowship;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="granted", type="boolean", nullable=true)
+     */
+    private $granted;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="comments", type="text", nullable=true)
@@ -374,7 +381,7 @@ class Registration
     }
 
     /**
-     * Set expenses
+     * Set fellowship
      *
      * @param boolean $fellowship
      *
@@ -395,6 +402,30 @@ class Registration
     public function getFellowship()
     {
         return $this->fellowship;
+    }
+
+    /**
+     * Set granted
+     *
+     * @param boolean $granted
+     *
+     * @return Registration
+     */
+    public function setGranted($granted)
+    {
+        $this->granted = $granted;
+
+        return $this;
+    }
+
+    /**
+     * Get granted
+     *
+     * @return boolean
+     */
+    public function getGranted()
+    {
+        return $this->granted;
     }
 
     /**

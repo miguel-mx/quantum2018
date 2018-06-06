@@ -5,6 +5,10 @@
         <span class="text-danger">{{ form_errors(edit_form.file) }}</span>
         {{ form_widget(edit_form.file, {'attr': {'class': 'form-control'}}) }}
     </div>
+    <div class="form-check mb-3">
+        {{ form_widget(edit_form.granted, {'attr': {'class': 'form-check-input'}}) }}
+        <label class="form-check-label lead" for="appbundle_registration_granted">Fellowship granted</label>
+    </div>
     <div class="form-group">
         <label for="inputAbstract">Comments</label>
         <span class="text-danger">{{ form_errors(edit_form.comments) }}</span>

@@ -22,7 +22,15 @@
             </div>
             <div class="row mb-2">
                 <div class="col-md-3 text-muted">Fellowship:</div>
-                <div class="col-md-9">{% if registration.fellowship %}Yes {% else %}No {% endif %}</div>
+                <div class="col-md-3">
+                    {% if registration.fellowship %}Yes
+                        </div>
+                        <div class="col-md-2">Granted:</div>
+                        <div class="col-md-3">
+                            {% if registration.granted %}<span class="text-success">Yes</span>{% else %}<span class="text-danger">No</span>{% endif %}
+                    {% else %}No
+                    {% endif %}
+                </div>
             </div>
             <div class="row mb-2">
                 <div class="col-md-3 text-muted">Arrival date:</div>

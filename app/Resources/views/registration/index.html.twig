@@ -69,7 +69,8 @@
                 <th>Status</th>
                 {#<th>Date</th>#}
                 <th>Fellowship</th>
-                 <th>Reccomendation</th>
+                <th>Granted</th>
+                <th>Reccomendation</th>
                 <th>Title</th>
                 <th>Comments</th>
             </tr>
@@ -81,9 +82,10 @@
                 <td>{{ registration.institution }}</td>
                 <td>{{ registration.status }}</td>
                 {#<td>{{ registration.createdAt|localizeddate('none', 'none', 'en_US', null, "cccc, d MMMM Y ") }}</td>#}
-                <td class="text-center">
-                    {% if registration.fellowship %}{% if registration.granted %}<span class="text-success">Yes</span>{% endif %}
-                    {% endif %}
+                <td class="text-center">{% if registration.fellowship %}Yes{% endif %}</td>
+                <td>{% if registration.fellowship %}
+                {% if registration.granted %}<span class="text-success">Yes</span>{% else %}<span class="text-danger">No</span>{% endif %}
+                {% endif %}
                 </td>
                 <td>{% if registration.file %}<a href="{{ asset('docs/' ~ registration.file) }}">{{ registration.file }}</a>{% endif %}</td>
                 <td>{{ registration.title }}</td>

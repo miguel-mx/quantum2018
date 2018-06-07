@@ -12,6 +12,9 @@ class CommentType extends AbstractType
         $builder->add('granted', 'Symfony\Component\Form\Extension\Core\Type\CheckboxType', array(
                 'required' => false,
             ));
+        $builder->add('confirmed', 'Symfony\Component\Form\Extension\Core\Type\CheckboxType', array(
+            'required' => false,
+        ));
         $builder->add('comments','Symfony\Component\Form\Extension\Core\Type\TextareaType', array('required' => false));
     }
 

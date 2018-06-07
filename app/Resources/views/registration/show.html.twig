@@ -27,8 +27,16 @@
                         </div>
                         <div class="col-md-2">Granted:</div>
                         <div class="col-md-3">
-                            {% if registration.granted %}<span class="text-success">Yes</span>{% else %}<span class="text-danger">No</span>{% endif %}
+                            {% if registration.granted %}<i class="fa fa-check text-success"></i> Yes{% else %}<i class="fa fa-times text-danger"></i> No{% endif %}
                     {% else %}No
+                    {% endif %}
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-md-3 text-muted">Confirmed:</div>
+                <div class="col-md-3">
+                    {% if registration.confirmed %}<i class="fa fa-check text-success"></i> Yes
+                    {% else %}<i class="fa fa-times text-danger"></i> No
                     {% endif %}
                 </div>
             </div>

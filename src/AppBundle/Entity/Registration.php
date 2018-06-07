@@ -120,6 +120,13 @@ class Registration
     private $granted;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="confirmed", type="boolean", nullable=true)
+     */
+    private $confirmed;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="comments", type="text", nullable=true)
@@ -426,6 +433,30 @@ class Registration
     public function getGranted()
     {
         return $this->granted;
+    }
+
+    /**
+     * Set confirmed
+     *
+     * @param boolean $confirmed
+     *
+     * @return Registration
+     */
+    public function setConfirmed($confirmed)
+    {
+        $this->confirmed = $confirmed;
+
+        return $this;
+    }
+
+    /**
+     * Get confirmed
+     *
+     * @return boolean
+     */
+    public function getConfirmed()
+    {
+        return $this->confirmed;
     }
 
     /**

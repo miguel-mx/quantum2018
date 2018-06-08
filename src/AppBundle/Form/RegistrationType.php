@@ -34,15 +34,15 @@ class RegistrationType extends AbstractType
                 'widget' => 'single_text',
                 'html5' => false,
                 'required' => false,))
-            ->add('title')
-            ->add('abstract')
+//            ->add('title')
+//            ->add('abstract')
 //            ->add('fellowship', 'Symfony\Component\Form\Extension\Core\Type\CheckboxType', array(
 //                'required' => false,
 //            ))
-            ->add('toggleTalk', 'Symfony\Component\Form\Extension\Core\Type\CheckboxType', array(
-            'mapped' => false,
-            'required' => false,
-            ))
+//            ->add('toggleTalk', 'Symfony\Component\Form\Extension\Core\Type\CheckboxType', array(
+//            'mapped' => false,
+//            'required' => false,
+//            ))
         ;
     }
 

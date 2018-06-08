@@ -68,7 +68,7 @@
                 <th>Institution</th>
                 <th>Status</th>
                 {#<th>Date</th>#}
-                <th>Fellowship</th>
+                {#<th>Fellowship</th>#}
                 <th>Granted</th>
                 <th>Confirmed</th>
                 <th>Reccomendation</th>
@@ -83,7 +83,7 @@
                 <td>{{ registration.institution }}</td>
                 <td>{{ registration.status }}</td>
                 {#<td>{{ registration.createdAt|localizeddate('none', 'none', 'en_US', null, "cccc, d MMMM Y ") }}</td>#}
-                <td class="text-center">{% if registration.fellowship %}Yes{% endif %}</td>
+                {#<td class="text-center">{% if registration.fellowship %}Yes{% endif %}</td>#}
                 <td class="text-center">{% if registration.fellowship %}
                 {% if registration.granted %}<span class="text-success">Yes</span>{% else %}<span class="text-danger">No</span>{% endif %}
                 {% endif %}

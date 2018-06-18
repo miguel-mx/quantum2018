@@ -44,6 +44,15 @@ class RegistrationRepository extends \Doctrine\ORM\EntityRepository
             ->getSingleScalarResult();
     }
 
+    public function countConfirmed()
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT count(r.id)  FROM AppBundle:Registration r WHERE r.confirmed = true'
+            )
+            ->getSingleScalarResult();
+    }
+
     public function findAllConfirmed() {
 
         return $this->getEntityManager()

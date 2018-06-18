@@ -32,6 +32,7 @@ class RegistrationController extends Controller
         $totalTalks = $em->getRepository('AppBundle:Registration')->countTalks();
         $totalRecommendations = $em->getRepository('AppBundle:Registration')->countRecommendation();
         $totalFellowships = $em->getRepository('AppBundle:Registration')->countFellowships();
+        $totalConfirmed = $em->getRepository('AppBundle:Registration')->countConfirmed();
         $confirmedRegistries = $em->getRepository('AppBundle:Registration')->findAllConfirmed();
 
         return $this->render('registration/index.html.twig', array(
@@ -40,6 +41,7 @@ class RegistrationController extends Controller
             'totalFellowships' => $totalFellowships,
             'totalTalks' => $totalTalks,
             'totalRecommendations' => $totalRecommendations,
+            'totalConfirmed' => $totalConfirmed,
             'confirmedRegistries' => $confirmedRegistries,
         ));
     }

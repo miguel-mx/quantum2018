@@ -110,8 +110,8 @@
                     </button>
                 </div>
                 <div class="modal-body py-5">
-                    {% for registry in registrations %}
-                        {{ registry.email }}{{ not loop.last ? ',' }}
+                    {% for registry in confirmedRegistries %}
+                            {{ registry.email }}{{ not loop.last ? ',' }}
                     {% endfor %}
                 </div>
             </div>

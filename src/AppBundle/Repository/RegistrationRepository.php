@@ -44,4 +44,15 @@ class RegistrationRepository extends \Doctrine\ORM\EntityRepository
             ->getSingleScalarResult();
     }
 
+    public function findAllConfirmed() {
+
+        return $this->getEntityManager()
+            ->createQuery(
+                "SELECT r FROM AppBundle:Registration r WHERE r.confirmed = true ORDER BY r.surname ASC"
+            )
+            ->getResult();
+
+    }
+
+
 }

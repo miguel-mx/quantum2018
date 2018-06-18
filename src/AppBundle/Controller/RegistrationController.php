@@ -32,7 +32,7 @@ class RegistrationController extends Controller
         $totalTalks = $em->getRepository('AppBundle:Registration')->countTalks();
         $totalRecommendations = $em->getRepository('AppBundle:Registration')->countRecommendation();
         $totalFellowships = $em->getRepository('AppBundle:Registration')->countFellowships();
-
+        $confirmedRegistries = $em->getRepository('AppBundle:Registration')->findAllConfirmed();
 
         return $this->render('registration/index.html.twig', array(
             'registrations' => $registrations,
@@ -40,6 +40,7 @@ class RegistrationController extends Controller
             'totalFellowships' => $totalFellowships,
             'totalTalks' => $totalTalks,
             'totalRecommendations' => $totalRecommendations,
+            'confirmedRegistries' => $confirmedRegistries,
         ));
     }
 
@@ -65,8 +66,9 @@ class RegistrationController extends Controller
             $message = \Swift_Message::newInstance()
                 ->setSubject('QUANTUM 2018 Registration')
                 ->setFrom('quantum2018@matmor.unam.mx')
-                ->setTo(array($registration->getEmail()))
-                ->setBcc(array('miguel@matmor.unam.mx'))
+                ->setTo(array('miguel@matmor.unam.mx'))
+//                ->setTo(array($registration->getEmail()))
+//                ->setBcc(array('miguel@matmor.unam.mx'))
                 ->setBody($this->container->get('templating')->render('registration/confirmation-email.txt.twig', array('registration' => $registration)))
             ;
             $mailer->send($message);
